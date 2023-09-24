@@ -22,15 +22,15 @@ class DynamicFormController extends AbstractController
     public function index(Request $request, InformationsRepository$informationsRepository, CategoriesRepository $categoriesRepository, EntityManagerInterface $entityManager): Response
     {
         $categories = $categoriesRepository->findAll(); 
-        $information = new Informations();
-        $informations = $informationsRepository->findAll(); 
+        $informations = $informationsRepository->findAll();
 
+        $information = new Informations();
         $form = $this->createForm(DynamicType::class, $information, ['categories' => $categories]);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             // $form->getData() holds the submitted values
-            // but, the original `$task` variable has also been updated
+            // but, the original `$information` variable has also been updated
             $information = $form->getData();
 
             // ... perform some action, such as saving the task to the database
