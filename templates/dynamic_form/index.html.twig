@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+{% block javascripts %}
+	{{ encore_entry_script_tags('dynamic') }}
+{% endblock %}
+
+{% block title %}Hello DynamicFormController!
+{% endblock %}
+
+{% block body %}
+    <style>
+#dynamic {
+        display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+#dynamic label {
+    margin-right : 10px
+}
+    </style>
+
+	{{ form(form) }}
+
+		<table style="margin-top: 40px">
+			<tr>
+				<th>Section</th>
+                <th style="width: 20px"></th>
+				<th>Information</th>
+			</tr>
+			{% for information in informations %}
+				<tr>
+					<td>{{ information.section.name }}</td>
+					<td>
+					</td>
+
+					<td>{{ information.name }}</td>
+				</tr>
+			{% endfor %}
+		</table>
+
+	{% endblock %}
